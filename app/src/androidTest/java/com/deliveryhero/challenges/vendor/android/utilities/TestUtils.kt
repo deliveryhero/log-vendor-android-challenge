@@ -10,7 +10,7 @@ import com.deliveryhero.challenges.vendor.android.data.Plant
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
-import java.util.*
+import java.util.Calendar
 
 /**
  * [Plant] objects used for tests.

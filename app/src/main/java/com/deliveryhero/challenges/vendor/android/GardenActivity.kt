@@ -2,7 +2,6 @@ package com.deliveryhero.challenges.vendor.android
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.deliveryhero.challenges.vendor.android.databinding.ActivityGardenBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

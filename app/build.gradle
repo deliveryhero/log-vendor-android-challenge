@@ -64,6 +64,10 @@ android {
                 arguments["dagger.hilt.disableModulesHaveInstallInCheck"] = "true"
             }
         }
+
+        lintOptions {
+            abortOnError false
+        }
     }
 
     buildTypes {

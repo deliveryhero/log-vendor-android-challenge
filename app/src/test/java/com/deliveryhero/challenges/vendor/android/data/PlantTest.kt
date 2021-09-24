@@ -1,9 +1,11 @@
 package com.deliveryhero.challenges.vendor.android.data
 
-import org.junit.Assert.*
+import junit.framework.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
-import java.util.*
+import java.util.Calendar
 import java.util.Calendar.DAY_OF_YEAR
 
 class PlantTest {

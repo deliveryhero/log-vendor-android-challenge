@@ -2,7 +2,7 @@ package com.deliveryhero.challenges.vendor.android.viewmodels
 
 import com.deliveryhero.challenges.vendor.android.data.PlantAndGardenPlantings
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
 
 class PlantAndGardenPlantingsViewModel(plantings: PlantAndGardenPlantings) {
     private val plant = checkNotNull(plantings.plant)
