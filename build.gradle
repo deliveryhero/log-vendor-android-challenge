@@ -1,0 +1,40 @@
+buildscript {
+    ext {
+        // Build script dependencies
+        gradleVersion = '7.0.2'
+        ktlintVersion = '0.38.1'
+        kotlinVersion = '1.5.+'
+        hiltVersion = '2.+'
+        navigationVersion = '2.+'
+    }
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:$gradleVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
+    }
+}
+
+plugins {
+    id "com.diffplug.spotless" version "5.2.0"
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+spotless {
+    kotlin {
+        target "**/*.kt"
+        ktlint(ktlintVersion).userData(['max_line_length' : '100'])
+    }
+}

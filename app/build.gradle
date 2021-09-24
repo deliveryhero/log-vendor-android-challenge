@@ -1,0 +1,157 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
+
+ext {
+    // Language dependencies
+    coroutinesVersion = "1.+"
+
+    // Core app dependencies
+    appCompatVersion = '1.+'
+    constraintLayoutVersion = '2.+'
+    lifecycleVersion = '2.+'
+    fragmentVersion = '1.+'
+    recyclerViewVersion = '1.+'
+
+    // 3rd-party dependencies
+    glideVersion = '4.+'
+    gsonVersion = '2.+'
+    ktxVersion = '1.+'
+    okhttpLoggingVersion = '4.+'
+    materialVersion = '1.+'
+    pagingVersion = '3.+'
+    retrofitVersion = '2.+'
+    roomVersion = '2.+'
+    truthVersion = '0.+'
+    workVersion = '2.+'
+    viewPagerVersion = '1.+'
+
+    // Test dependencies
+    junitVersion = '4.+'
+    testExtJunit = '1.+'
+    coreTestingVersion = '2.+'
+    espressoVersion = '3.+'
+    uiAutomatorVersion = '2.+'
+    runnerVersion = '1.+'
+}
+
+android {
+    compileSdkVersion 31
+
+    buildFeatures {
+        dataBinding true
+    }
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 31
+
+        applicationId "com.deliveryhero.challenges.vendor.android"
+        testInstrumentationRunner "com.deliveryhero.challenges.vendor.android.utilities.MainTestRunner"
+
+        versionCode 1
+        versionName "0.0.1"
+
+        vectorDrawables.useSupportLibrary true
+
+        // Consult the README on instructions for setting up Unsplash API key
+        buildConfigField("String", "UNSPLASH_ACCESS_KEY", "\"" + getUnsplashAccess() + "\"")
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments["dagger.hilt.disableModulesHaveInstallInCheck"] = "true"
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        // work-runtime-ktx 2.1.0 and above now requires Java 8
+        jvmTarget = "11"
+
+        // Enable Coroutines and Flow APIs
+        freeCompilerArgs += "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+        freeCompilerArgs += "-Xopt-in=kotlinx.coroutines.FlowPreview"
+    }
+
+    packagingOptions {
+        // Multiple dependency bring these files in. Exclude them to enable
+        // our test APK to build (has no effect on our AARs)
+        excludes += "/META-INF/AL2.0"
+        excludes += "/META-INF/LGPL2.1"
+    }
+}
+
+dependencies {
+    // Main dependencies
+    kapt "androidx.room:room-compiler:$roomVersion"
+    kapt "com.github.bumptech.glide:compiler:$glideVersion"
+    kapt "com.google.dagger:hilt-android-compiler:$hiltVersion"
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    implementation "androidx.core:core-ktx:$ktxVersion"
+    implementation "androidx.fragment:fragment-ktx:$fragmentVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
+    implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    implementation "androidx.viewpager2:viewpager2:$viewPagerVersion"
+    implementation "androidx.work:work-runtime-ktx:$workVersion"
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    implementation "com.google.android.material:material:$materialVersion"
+    implementation "com.google.code.gson:gson:$gsonVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpLoggingVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+    implementation "com.google.dagger:hilt-android:$hiltVersion"
+
+    // Testing dependencies
+    testImplementation "junit:junit:$junitVersion"
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hiltVersion"
+    androidTestImplementation "androidx.arch.core:core-testing:$coreTestingVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$espressoVersion"
+    androidTestImplementation "androidx.test.ext:junit:$testExtJunit"
+    androidTestImplementation "androidx.test.uiautomator:uiautomator:$uiAutomatorVersion"
+    androidTestImplementation "androidx.work:work-testing:$workVersion"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$hiltVersion"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
+
+    //noinspection GradleDependency (it's old and risky to change)
+    androidTestImplementation "com.google.truth:truth:$truthVersion"
+}
+
+def getUnsplashAccess() {
+    def key = "unsplash_access_key"
+    // try public config first
+    def prop = project.findProperty(key)
+    if (prop == null || prop.toString().isEmpty()) {
+        // nothing, try in local config
+        def properties = new Properties()
+        def stream = project.rootProject.file('local.properties').newDataInputStream()
+        properties.load(stream)
+        prop = properties.getProperty(key)
+    }
+    return prop
+}
