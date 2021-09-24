@@ -157,5 +157,6 @@ def getUnsplashAccess() {
         return prop
     } catch (Throwable t) {
         t.printStackTrace()
+        return null
     }
 }
