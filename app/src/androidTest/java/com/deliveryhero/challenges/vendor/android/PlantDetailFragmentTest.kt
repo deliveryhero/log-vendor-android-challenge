@@ -8,7 +8,7 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.Intents.intended
-import androidx.test.espresso.intent.matcher.IntentMatchers.*
+import androidx.test.espresso.intent.matcher.IntentMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -52,9 +52,9 @@ class PlantDetailFragmentTest {
         intended(
             chooser(
                 allOf(
-                    hasAction(Intent.ACTION_SEND),
-                    hasType("text/plain"),
-                    hasExtra(Intent.EXTRA_TEXT, shareText)
+                    IntentMatchers.hasAction(Intent.ACTION_SEND),
+                    IntentMatchers.hasType("text/plain"),
+                    IntentMatchers.hasExtra(Intent.EXTRA_TEXT, shareText)
                 )
             )
         )

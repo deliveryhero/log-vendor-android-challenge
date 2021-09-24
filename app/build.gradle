@@ -64,6 +64,10 @@ android {
                 arguments["dagger.hilt.disableModulesHaveInstallInCheck"] = "true"
             }
         }
+
+        lintOptions {
+            abortOnError false
+        }
     }
 
     buildTypes {
@@ -143,15 +147,20 @@ dependencies {
 }
 
 def getUnsplashAccess() {
-    def key = "unsplash_access_key"
-    // try public config first
-    def prop = project.findProperty(key)
-    if (prop == null || prop.toString().isEmpty()) {
-        // nothing, try in local config
-        def properties = new Properties()
-        def stream = project.rootProject.file('local.properties').newDataInputStream()
-        properties.load(stream)
-        prop = properties.getProperty(key)
+    try {
+        def key = "unsplash_access_key"
+        // try public config first
+        def prop = project.findProperty(key)
+        if (prop == null || prop.toString().isEmpty()) {
+            // nothing, try in local config
+            def properties = new Properties()
+            def stream = project.rootProject.file('local.properties').newDataInputStream()
+            properties.load(stream)
+            prop = properties.getProperty(key)
+        }
+        return prop
+    } catch (Throwable t) {
+        t.printStackTrace()
+        return null
     }
-    return prop
 }

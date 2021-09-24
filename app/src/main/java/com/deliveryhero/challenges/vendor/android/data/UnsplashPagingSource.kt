@@ -27,5 +27,4 @@ class UnsplashPagingSource(
     }
 
     override fun getRefreshKey(state: PagingState<Int, UnsplashPhoto>): Int? = null
-
 }
