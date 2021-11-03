@@ -2,12 +2,12 @@ package com.deliveryhero.godroid.tech.exam.network.data
 
 data class Order(
     val id: String,
-    val state: STATE,
+    val state: OrderState,
     val items: List<String>,
     val total: Double
 )
 
-enum class STATE {
+enum class OrderState {
     NEW,
     UPCOMING,
     ACCEPTED,
