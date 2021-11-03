@@ -1,36 +1,26 @@
 package com.deliveryhero.godroid.tech.exam
 
-import android.app.Application
 import com.deliveryhero.godroid.tech.exam.di.DaggerAppComponent
 import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
+import dagger.android.DaggerApplication
 import dagger.android.HasAndroidInjector
 import io.reactivex.rxjava3.exceptions.UndeliverableException
 import io.reactivex.rxjava3.plugins.RxJavaPlugins
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 import java.io.IOException
-import javax.inject.Inject
 
-class ExamApplication : Application(), HasAndroidInjector {
+class ExamApplication : DaggerApplication(), HasAndroidInjector {
 
-    @Inject
-    lateinit var androidInjector: DispatchingAndroidInjector<Any>
-
-    override fun androidInjector(): AndroidInjector<Any> = androidInjector
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
+        DaggerAppComponent.factory()
+            .create(this)
 
     override fun onCreate() {
         super.onCreate()
 
-        injectDagger()
         setRxErrorHandler()
         setupTimber()
-    }
-
-    private fun injectDagger() {
-        DaggerAppComponent.factory()
-            .create(this)
-            .inject(this)
     }
 
     private fun setupTimber() {
