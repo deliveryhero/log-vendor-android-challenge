@@ -1,12 +1,11 @@
 package com.deliveryhero.godroid.tech.exam.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.deliveryhero.godroid.tech.exam.R.id
 import com.deliveryhero.godroid.tech.exam.R.layout
-import com.deliveryhero.godroid.tech.exam.ui.main.MainFragment
+import dagger.android.support.DaggerAppCompatActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DaggerAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

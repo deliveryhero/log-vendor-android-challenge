@@ -8,8 +8,8 @@ import retrofit2.http.Path
 interface Api {
 
     @GET("orders")
-    fun getOrders(): Single<List<String>>
+    fun getOrders(): Single<List<Order>>
 
     @GET("order/{id}")
-    fun getOrders(@Path("id") orderId: String): Single<Order>
+    fun getOrder(@Path("id") orderId: String): Single<Order>
 }
