@@ -2,9 +2,10 @@ package com.deliveryhero.godroid.tech.exam.network.di
 
 import android.app.Application
 import com.appham.mockinizer.mockinize
-import com.deliveryhero.godroid.tech.exam.network.Api
 import com.deliveryhero.godroid.tech.exam.network.ApiEndpoints
 import com.deliveryhero.godroid.tech.exam.network.MockServer
+import com.deliveryhero.godroid.tech.exam.network.OrdersCoroutinesApi
+import com.deliveryhero.godroid.tech.exam.network.OrdersRxApi
 import dagger.Module
 import dagger.Provides
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
@@ -32,17 +33,26 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideProductsApi(okHttpClient: OkHttpClient): Api =
+    fun provideOrdersRxApi(okHttpClient: OkHttpClient): OrdersRxApi =
         Retrofit.Builder()
             .client(okHttpClient)
             .baseUrl(ApiEndpoints.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .build()
-            .create(Api::class.java)
+            .create(OrdersRxApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideOrdersCoroutinesApi(okHttpClient: OkHttpClient): OrdersCoroutinesApi =
+        Retrofit.Builder()
+            .client(okHttpClient)
+            .baseUrl(ApiEndpoints.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(OrdersCoroutinesApi::class.java)
 
     @Provides
     @Singleton
     fun provideMockServer(context: Application): MockServer = MockServer(context)
-
 }
