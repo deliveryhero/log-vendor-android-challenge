@@ -1,4 +1,4 @@
-package com.deliveryhero.godroid.tech.exam.network.data
+package com.deliveryhero.godroid.tech.exam.network
 
 import android.content.Context
 import com.appham.mockinizer.RequestFilter

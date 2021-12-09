@@ -4,7 +4,7 @@ import android.app.Application
 import com.appham.mockinizer.mockinize
 import com.deliveryhero.godroid.tech.exam.network.Api
 import com.deliveryhero.godroid.tech.exam.network.ApiEndpoints
-import com.deliveryhero.godroid.tech.exam.network.data.MockServer
+import com.deliveryhero.godroid.tech.exam.network.MockServer
 import dagger.Module
 import dagger.Provides
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory

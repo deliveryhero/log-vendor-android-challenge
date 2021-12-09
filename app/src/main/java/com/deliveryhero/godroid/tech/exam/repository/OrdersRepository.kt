@@ -1,4 +1,4 @@
-package com.deliveryhero.godroid.tech.exam.ui.main
+package com.deliveryhero.godroid.tech.exam.repository
 
 import com.deliveryhero.godroid.tech.exam.core.schedular.SchedulerProvider
 import com.deliveryhero.godroid.tech.exam.network.Api
