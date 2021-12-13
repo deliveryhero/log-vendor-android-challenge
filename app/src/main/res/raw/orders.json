@@ -1,0 +1,32 @@
+[
+    {
+        "id": "123",
+        "state": "CLOSED",
+        "items": [],
+        "total": 0.0
+    },
+    {
+        "id": "234",
+        "state": "NEW",
+        "items": [],
+        "total": 0.0
+    },
+    {
+        "id": "345",
+        "state": "UPCOMING",
+        "items": [],
+        "total": 0.0
+    },
+    {
+        "id": "456",
+        "state": "ACCEPTED",
+        "items": [],
+        "total": 0.0
+    },
+    {
+        "id": "567",
+        "state": "CANCELLED",
+        "items": [],
+        "total": 0.0
+    }
+]

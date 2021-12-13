@@ -5,11 +5,11 @@ import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface Api {
+interface OrdersRxApi {
 
     @GET("orders")
-    fun getOrders(): Single<List<String>>
+    fun getOrders(): Single<List<Order>>
 
     @GET("order/{id}")
-    fun getOrders(@Path("id") orderId: String): Single<Order>
+    fun getOrder(@Path("id") orderId: String): Single<Order>
 }
