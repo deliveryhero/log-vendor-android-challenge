@@ -52,6 +52,7 @@ class NetworkModule {
             .build()
             .create(OrdersCoroutinesApi::class.java)
 
+    // TODO can this be a @Binds instead? what's the difference btw Provides and Binds?
     @Provides
     @Singleton
     fun provideMockServer(context: Application): MockServer = MockServer(context)

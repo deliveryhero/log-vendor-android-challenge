@@ -10,26 +10,27 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-@Reusable
-class OrdersRepository @Inject constructor(
-    private val ordersRxApi: OrdersRxApi,
-    private val ordersCoroutinesApi: OrdersCoroutinesApi,
-    private val schedulerProvider: SchedulerProvider
-) {
-
-    fun getRxOrders(): Single<List<Order>> =
-        ordersRxApi.getOrders().subscribeOn(schedulerProvider.io())
-
-    fun getRxOrder(id: String): Single<Order> =
-        ordersRxApi.getOrder(id).subscribeOn(schedulerProvider.io())
-
-    suspend fun getCoroutinesOrders(): List<Order> =
-        withContext(Dispatchers.IO) {
-            ordersCoroutinesApi.getOrders()
-        }
-
-    suspend fun getCoroutinesOrder(id: String): Order =
-        withContext(Dispatchers.IO) {
-            ordersCoroutinesApi.getOrder(id)
-        }
-}
+// TODO remove and let candidate create it 
+//@Reusable
+//class OrdersRepository @Inject constructor(
+//    private val ordersRxApi: OrdersRxApi,
+//    private val ordersCoroutinesApi: OrdersCoroutinesApi,
+//    private val schedulerProvider: SchedulerProvider
+//) {
+//
+//    fun getRxOrders(): Single<List<String>> =
+//        ordersRxApi.getOrders().subscribeOn(schedulerProvider.io())
+//
+//    fun getRxOrder(id: String): Single<Order> =
+//        ordersRxApi.getOrder(id).subscribeOn(schedulerProvider.io())
+//
+//    suspend fun getCoroutinesOrders(): List<Order> =
+//        withContext(Dispatchers.IO) {
+//            ordersCoroutinesApi.getOrders()
+//        }
+//
+//    suspend fun getCoroutinesOrder(id: String): Order =
+//        withContext(Dispatchers.IO) {
+//            ordersCoroutinesApi.getOrder(id)
+//        }
+//}

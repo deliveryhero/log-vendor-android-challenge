@@ -8,7 +8,7 @@ import retrofit2.http.Path
 interface OrdersRxApi {
 
     @GET("orders")
-    fun getOrders(): Single<List<Order>>
+    fun getOrders(): Single<List<String>>
 
     @GET("order/{id}")
     fun getOrder(@Path("id") orderId: String): Single<Order>
