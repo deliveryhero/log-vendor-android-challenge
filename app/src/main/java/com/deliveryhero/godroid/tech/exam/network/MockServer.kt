@@ -9,10 +9,31 @@ import javax.inject.Inject
 class MockServer @Inject constructor(
     private val context: Context
 ) {
+
     fun getMocks() = mapOf(
         RequestFilter("/orders") to MockResponse().apply {
             setResponseCode(200)
             setBody(readFile(R.raw.orders))
+        },
+        RequestFilter(path = "/order/1") to MockResponse().apply {
+            setResponseCode(200)
+            setBody(readFile(R.raw.order_1))
+        },
+        RequestFilter(path = "/order/2") to MockResponse().apply {
+            setResponseCode(200)
+            setBody(readFile(R.raw.order_2))
+        },
+        RequestFilter(path = "/order/3") to MockResponse().apply {
+            setResponseCode(200)
+            setBody(readFile(R.raw.order_3))
+        },
+        RequestFilter(path = "/order/4") to MockResponse().apply {
+            setResponseCode(200)
+            setBody(readFile(R.raw.order_4))
+        },
+        RequestFilter(path = "/order/5") to MockResponse().apply {
+            setResponseCode(200)
+            setBody(readFile(R.raw.order_5))
         },
     )
 
