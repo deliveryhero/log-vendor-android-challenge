@@ -26,7 +26,11 @@ class MainFragment : DaggerFragment() {
 
     private var binding: MainFragmentBinding? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = MainFragmentBinding.inflate(LayoutInflater.from(context))
         return binding?.root
     }
@@ -38,10 +42,6 @@ class MainFragment : DaggerFragment() {
             adapter = ordersAdapter
             addItemDecoration(getRecyclerViewDividerItem(this.context))
         }
-
-        viewModel.orders.observe(viewLifecycleOwner) {
-            ordersAdapter.setItems(it)
-        }
     }
 
     private fun getRecyclerViewDividerItem(context: Context): DividerItemDecoration {
@@ -49,11 +49,6 @@ class MainFragment : DaggerFragment() {
         return DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL).apply {
             setDrawable(divider)
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding = null
     }
 
     companion object {
