@@ -7,7 +7,7 @@ import retrofit2.http.Path
 interface OrdersCoroutinesApi {
 
     @GET("orders")
-    suspend fun getOrders(): List<Order>
+    suspend fun getOrders(): List<String>
 
     @GET("order/{id}")
     suspend fun getOrder(@Path("id") orderId: String): Order
