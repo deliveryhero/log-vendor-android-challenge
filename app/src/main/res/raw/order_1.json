@@ -1,0 +1,9 @@
+{
+  "id": "1",
+  "state": "CLOSED",
+  "items": [
+    "burger",
+    "fries"
+  ],
+  "total": 5.0
+}
