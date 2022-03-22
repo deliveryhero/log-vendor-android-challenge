@@ -4,8 +4,8 @@ import android.app.Application
 import com.deliveryhero.godroid.tech.exam.ExamApplication
 import com.deliveryhero.godroid.tech.exam.core.dispatcher.DispatcherProvider
 import com.deliveryhero.godroid.tech.exam.core.dispatcher.DispatcherProviderImpl
-import com.deliveryhero.godroid.tech.exam.core.schedular.AndroidSchedulerProvider
-import com.deliveryhero.godroid.tech.exam.core.schedular.SchedulerProvider
+import com.deliveryhero.godroid.tech.exam.core.scheduler.AndroidSchedulerProvider
+import com.deliveryhero.godroid.tech.exam.core.scheduler.SchedulerProvider
 import dagger.Binds
 import dagger.Module
 

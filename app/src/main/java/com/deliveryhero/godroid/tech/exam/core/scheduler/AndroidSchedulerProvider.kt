@@ -1,4 +1,4 @@
-package com.deliveryhero.godroid.tech.exam.core.schedular
+package com.deliveryhero.godroid.tech.exam.core.scheduler
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
